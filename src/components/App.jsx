@@ -15,7 +15,7 @@ export default function App() {
         {
           text: userInput,
           completed: false,
-          key: nanoid(),
+          id: nanoid(),
         },
         ...todos,
       ]);
@@ -23,8 +23,26 @@ export default function App() {
     }
   }
 
+  function markComplete(id) {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) => {
+        return todo.id === id
+          ? { ...todo, completed: !todo.completed }
+          : { todo };
+      })
+    );
+  }
+
   const todoList = todos.map((todo) => {
-    return <Todo key={todo.key} text={todo.text} completed={todo.completed} />;
+    return (
+      <Todo
+        key={todo.id}
+        id={todo.id}
+        text={todo.text}
+        completed={todo.completed}
+        markComplete={markComplete}
+      />
+    );
   });
 
   return (
