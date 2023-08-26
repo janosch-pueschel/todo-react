@@ -33,6 +33,21 @@ export default function App() {
     );
   }
 
+  function deleteTodo(id) {
+    setTodos((prevTodos) => {
+      const updatedTodos = [];
+      for (let i = 0; i < prevTodos.length; i++) {
+        const todo = prevTodos[i];
+        if (todo.id === id) {
+          continue;
+        } else {
+          updatedTodos.push(todo);
+        }
+      }
+      return updatedTodos;
+    });
+  }
+
   const todoList = todos.map((todo) => {
     return (
       <Todo
@@ -41,6 +56,7 @@ export default function App() {
         text={todo.text}
         completed={todo.completed}
         markComplete={markComplete}
+        deleteTodo={deleteTodo}
       />
     );
   });
