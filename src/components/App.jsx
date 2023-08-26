@@ -12,12 +12,12 @@ export default function App() {
   function addTodo(event) {
     if (event.type === "click" || event.key === "Enter") {
       setTodos([
-        ...todos,
         {
           text: userInput,
           completed: false,
           key: nanoid(),
         },
+        ...todos,
       ]);
       setUserInput("");
     }
