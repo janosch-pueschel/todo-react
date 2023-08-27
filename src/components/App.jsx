@@ -3,8 +3,14 @@ import { nanoid } from "nanoid";
 import Todo from "./Todo";
 
 export default function App() {
-  const [todos, setTodos] = React.useState([]);
+  const [todos, setTodos] = React.useState(
+    JSON.parse(localStorage.getItem("todos"))
+  );
   const [userInput, setUserInput] = React.useState("");
+
+  React.useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   function getUserInput(event) {
     setUserInput(event.target.value);
@@ -71,6 +77,7 @@ export default function App() {
 
   return (
     <div>
+      <h1>My Todo-List</h1>
       <div className="w-4/6 mb-5">
         <input
           className="border mr-5"
