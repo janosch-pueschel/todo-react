@@ -1,9 +1,37 @@
 import React from "react";
 import { nanoid } from "nanoid";
 import Todo from "./Todo";
+
 export default function App() {
-  const [todos, setTodos] = React.useState([]);
+  const [todos, setTodos] = React.useState([
+    {
+      text: "Aufgabe 5",
+      completed: false,
+      id: nanoid(),
+    },
+    {
+      text: "Aufgabe 4",
+      completed: false,
+      id: nanoid(),
+    },
+    {
+      text: "Aufgabe 3",
+      completed: false,
+      id: nanoid(),
+    },
+    {
+      text: "Aufgabe 2",
+      completed: false,
+      id: nanoid(),
+    },
+    {
+      text: "Aufgabe 1",
+      completed: false,
+      id: nanoid(),
+    },
+  ]);
   const [userInput, setUserInput] = React.useState("");
+  const [modalIsOpen, setModalIsOpen] = React.useState(false);
 
   function getUserInput(event) {
     setUserInput(event.target.value);
@@ -46,6 +74,14 @@ export default function App() {
     });
   }
 
+  function updateTodo(event, id) {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) => {
+        return todo.id === id ? { ...todo, text: event.target.value } : todo;
+      })
+    );
+  }
+
   const todoList = todos.map((todo) => {
     return (
       <Todo
@@ -55,6 +91,7 @@ export default function App() {
         completed={todo.completed}
         markComplete={markComplete}
         deleteTodo={deleteTodo}
+        updateTodo={updateTodo}
       />
     );
   });
