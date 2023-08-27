@@ -3,35 +3,8 @@ import { nanoid } from "nanoid";
 import Todo from "./Todo";
 
 export default function App() {
-  const [todos, setTodos] = React.useState([
-    {
-      text: "Aufgabe 5",
-      completed: false,
-      id: nanoid(),
-    },
-    {
-      text: "Aufgabe 4",
-      completed: false,
-      id: nanoid(),
-    },
-    {
-      text: "Aufgabe 3",
-      completed: false,
-      id: nanoid(),
-    },
-    {
-      text: "Aufgabe 2",
-      completed: false,
-      id: nanoid(),
-    },
-    {
-      text: "Aufgabe 1",
-      completed: false,
-      id: nanoid(),
-    },
-  ]);
+  const [todos, setTodos] = React.useState([]);
   const [userInput, setUserInput] = React.useState("");
-  const [modalIsOpen, setModalIsOpen] = React.useState(false);
 
   function getUserInput(event) {
     setUserInput(event.target.value);
