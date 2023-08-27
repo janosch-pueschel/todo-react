@@ -26,9 +26,7 @@ export default function App() {
   function markComplete(id) {
     setTodos((prevTodos) =>
       prevTodos.map((todo) => {
-        return todo.id === id
-          ? { ...todo, completed: !todo.completed }
-          : { todo };
+        return todo.id === id ? { ...todo, completed: !todo.completed } : todo;
       })
     );
   }
