@@ -1,4 +1,7 @@
 import React from "react";
+import Icon from "@mdi/react";
+import { mdiPencil } from "@mdi/js";
+import { mdiDelete } from "@mdi/js";
 
 export default function Todo(props) {
   const [todoEditor, setTodoEditor] = React.useState(false);
@@ -7,7 +10,7 @@ export default function Todo(props) {
   }
 
   return (
-    <div className="w-4/6 flex justify-between">
+    <div className="grid grid-cols-4 mb-10">
       <button className="border" onClick={() => props.markComplete(props.id)}>
         {props.completed ? "completed" : "open"}
       </button>
@@ -21,11 +24,15 @@ export default function Todo(props) {
       ) : (
         <p>{props.text}</p>
       )}
-      <button className="border" onClick={() => props.deleteTodo(props.id)}>
-        Delete
-      </button>
+
+      <Icon
+        path={mdiDelete}
+        size={1}
+        onClick={() => props.deleteTodo(props.id)}
+      />
+
       <button className="border" onClick={openTodoEditor}>
-        {todoEditor ? "Save" : "Edit"}
+        {todoEditor ? "Save" : <Icon path={mdiPencil} size={1} />}
       </button>
     </div>
   );
