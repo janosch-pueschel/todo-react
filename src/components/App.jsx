@@ -23,7 +23,9 @@ export default function App() {
   }
 
   function addTodo(event) {
-    if (event.type === "click" || event.key === "Enter") {
+    if (userInput === "") {
+      alert("Please enter your todo-item!");
+    } else if (event.type === "click" || event.key === "Enter") {
       console.log(event.target.value);
       setTodos([
         {
