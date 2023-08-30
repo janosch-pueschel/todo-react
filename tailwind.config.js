@@ -14,6 +14,9 @@ export default {
       fontFamily: {
         asap: ["Asap", "sans-serif"],
       },
+      gridTemplateColumns: {
+        todos: "1fr 12fr 1fr 1fr",
+      },
     },
   },
   plugins: [],

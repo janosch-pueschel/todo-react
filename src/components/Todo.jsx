@@ -1,7 +1,9 @@
 import React from "react";
 import Icon from "@mdi/react";
-import { mdiPencil } from "@mdi/js";
+import { mdiLoading } from "@mdi/js";
+import { mdiCheckCircleOutline } from "@mdi/js";
 import { mdiDelete } from "@mdi/js";
+import { mdiPencil } from "@mdi/js";
 
 export default function Todo(props) {
   const [todoEditor, setTodoEditor] = React.useState(false);
@@ -10,10 +12,23 @@ export default function Todo(props) {
   }
 
   return (
-    <div className="grid grid-cols-4 mb-10">
-      <button className="border" onClick={() => props.markComplete(props.id)}>
-        {props.completed ? "completed" : "open"}
-      </button>
+    <div className="grid grid-cols-todos mb-10">
+      {props.completed ? (
+        <Icon
+          path={mdiCheckCircleOutline}
+          size={1}
+          onClick={() => props.markComplete(props.id)}
+          className="cursor-pointer"
+        />
+      ) : (
+        <Icon
+          path={mdiLoading}
+          size={1}
+          onClick={() => props.markComplete(props.id)}
+          className="cursor-pointer"
+        />
+      )}
+
       {todoEditor ? (
         <input
           type="text"
@@ -24,16 +39,19 @@ export default function Todo(props) {
       ) : (
         <p>{props.text}</p>
       )}
-
+      <Icon
+        path={mdiPencil}
+        size={1}
+        onClick={openTodoEditor}
+        color={todoEditor ? "#7FFFD4" : ""}
+        className="cursor-pointer"
+      />
       <Icon
         path={mdiDelete}
         size={1}
         onClick={() => props.deleteTodo(props.id)}
+        className="cursor-pointer"
       />
-
-      <button className="border" onClick={openTodoEditor}>
-        {todoEditor ? "Save" : <Icon path={mdiPencil} size={1} />}
-      </button>
     </div>
   );
 }

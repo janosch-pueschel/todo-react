@@ -24,6 +24,7 @@ export default function App() {
 
   function addTodo(event) {
     if (event.type === "click" || event.key === "Enter") {
+      console.log(event.target.value);
       setTodos([
         {
           text: userInput,
