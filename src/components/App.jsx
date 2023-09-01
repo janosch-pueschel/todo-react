@@ -23,19 +23,20 @@ export default function App() {
   }
 
   function addTodo(event) {
-    if (userInput === "") {
-      alert("Please enter your todo-item!");
-    } else if (event.type === "click" || event.key === "Enter") {
-      console.log(event.target.value);
-      setTodos([
-        {
-          text: userInput,
-          completed: false,
-          id: nanoid(),
-        },
-        ...todos,
-      ]);
-      setUserInput("");
+    if (event.type === "click" || event.key === "Enter") {
+      if (userInput === "") {
+        alert("Please enter your todo-item!");
+      } else {
+        setTodos([
+          {
+            text: userInput,
+            completed: false,
+            id: nanoid(),
+          },
+          ...todos,
+        ]);
+        setUserInput("");
+      }
     }
   }
 
@@ -78,7 +79,6 @@ export default function App() {
         todo.completed ? (todosDone += 1) : (todosDone += 0);
       });
       const percent = Math.round((todosDone / todos.length) * 100);
-      console.log(percent);
       return percent;
     });
   }, [todos]);
