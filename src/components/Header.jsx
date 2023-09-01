@@ -4,7 +4,7 @@
 // https://unsplash.com/de/fotos/g30P1zcOzXo
 import React from "react";
 
-export default function Header() {
+export default function Header(props) {
   const today = new Date();
   const day = today.toLocaleString("en-us", { weekday: "long" });
   const month = today.toLocaleString("default", { month: "short" });
@@ -29,7 +29,9 @@ export default function Header() {
           <p>{todaysDate}</p>
         </div>
         <div className="flex justify-end">
-          <p>45% completed</p>
+          <p>
+            {isNaN(props.completedTodos) ? "" : `${props.completedTodos} % done`}
+          </p>
         </div>
       </div>
     </div>

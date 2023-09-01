@@ -70,6 +70,19 @@ export default function App() {
     );
   }
 
+  const [completedTodos, setCompletedTodos] = React.useState(NaN);
+  React.useEffect(() => {
+    setCompletedTodos(() => {
+      let todosDone = 0;
+      todos.forEach((todo) => {
+        todo.completed ? (todosDone += 1) : (todosDone += 0);
+      });
+      const percent = Math.round((todosDone / todos.length) * 100);
+      console.log(percent);
+      return percent;
+    });
+  }, [todos]);
+
   const todoList = todos.map((todo) => {
     return (
       <Todo
@@ -86,7 +99,7 @@ export default function App() {
 
   return (
     <div>
-      <Header />
+      <Header completedTodos={completedTodos} />
       <div className="flex flex-col items-center">
         <div className="w-4/6 my-5 flex justify-center">
           <div className="flex w-fit p-1 border-b border-slate-200 text-lg">
