@@ -105,7 +105,7 @@ export default function App() {
             <input
               className="appearance-none focus:outline-none w-96 mr-5"
               type="text"
-              placeholder="Todo"
+              placeholder="Add Todo"
               value={userInput}
               onChange={getUserInput}
               onKeyDown={addTodo}

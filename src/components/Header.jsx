@@ -1,5 +1,5 @@
 import React from "react";
-import { CircularProgressbar } from "react-circular-progressbar";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
 export default function Header(props) {
@@ -19,11 +19,11 @@ export default function Header(props) {
 
   return (
     <div className="flex justify-center py-16 bg-headertest bg-no-repeat bg-cover border-b-8 border-slate-100 ">
-      <div className="w-4/6 grid grid-cols-2 grid-rows-2 gap-10 text-slate-800">
+      <div className="w-4/6 grid grid-cols-2 grid-rows-2 gap-10 text-slate-900">
         <div className="col-span-2">
           <h1 className="text-5xl font-normal">My ToDo-List</h1>
         </div>
-        <div>
+        <div className="flex self-end">
           <p>{todaysDate}</p>
         </div>
         <div className="flex justify-end">
@@ -34,6 +34,13 @@ export default function Header(props) {
               <CircularProgressbar
                 value={props.completedTodos}
                 text={`${props.completedTodos}%`}
+                strokeWidth={10}
+                styles={buildStyles({
+                  textSize: "28px",
+                  textColor: "#fff",
+                  pathColor: "#60a5fa",
+                  trailColor: "#fff",
+                })}
               />
             )}
           </div>

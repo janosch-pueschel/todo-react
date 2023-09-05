@@ -6,7 +6,7 @@ export default {
       backgroundImage: {
         header: "url('/src/img/header-bg.jpg')",
         headertest:
-          "linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('/src/img/header-bg.jpg')",
+          "linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url('/src/img/header-bg.jpg')",
       },
       backgroundPosition: {
         header: "0% 50%",
