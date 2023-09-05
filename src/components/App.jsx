@@ -4,6 +4,8 @@ import Header from "./Header";
 import Todo from "./Todo";
 import Icon from "@mdi/react";
 import { mdiPlus } from "@mdi/js";
+import { CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
 export default function App() {
   const [todos, setTodos] = React.useState(

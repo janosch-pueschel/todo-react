@@ -1,8 +1,6 @@
-// Background-Inspo:
-// https://unsplash.com/de/fotos/y2azHvupCVo
-// https://unsplash.com/de/fotos/_hpk_92Crhs
-// https://unsplash.com/de/fotos/g30P1zcOzXo
 import React from "react";
+import { CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
 export default function Header(props) {
   const today = new Date();
@@ -29,9 +27,16 @@ export default function Header(props) {
           <p>{todaysDate}</p>
         </div>
         <div className="flex justify-end">
-          <p>
-            {isNaN(props.completedTodos) ? "" : `${props.completedTodos} % done`}
-          </p>
+          <div className="w-14">
+            {isNaN(props.completedTodos) ? (
+              ""
+            ) : (
+              <CircularProgressbar
+                value={props.completedTodos}
+                text={`${props.completedTodos}%`}
+              />
+            )}
+          </div>
         </div>
       </div>
     </div>
