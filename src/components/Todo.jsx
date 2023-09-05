@@ -1,3 +1,4 @@
+import React from "react";
 import Icon from "@mdi/react";
 import { mdiCheckCircleOutline } from "@mdi/js";
 import { mdiCheckCircle } from "@mdi/js";
@@ -5,6 +6,11 @@ import { mdiDelete } from "@mdi/js";
 import { mdiPencil } from "@mdi/js";
 
 export default function Todo(props) {
+  const [todoEditor, setTodoEditor] = React.useState(false);
+  function openTodoEditor() {
+    setTodoEditor(!todoEditor);
+  }
+
   return (
     <div className="grid grid-cols-todos gap-1 mb-5 pb-5 border-b border-slate-200">
       {props.completed ? (
@@ -15,7 +21,7 @@ export default function Todo(props) {
           onClick={() => props.markComplete(props.id)}
           className="my-1 mx-2 cursor-pointer"
         />
-      ) : props.todoEditor ? (
+      ) : todoEditor ? (
         <p></p>
       ) : (
         <Icon
@@ -26,7 +32,7 @@ export default function Todo(props) {
         />
       )}
 
-      {props.todoEditor ? (
+      {todoEditor ? (
         <input
           type="text"
           className="border appearance-none focus:outline-none italic border-none rounded bg-zinc-100 py-1 px-2"
@@ -45,9 +51,9 @@ export default function Todo(props) {
         <Icon
           path={mdiPencil}
           size={1}
-          onClick={() => props.openTodoEditor(props.id)}
+          onClick={openTodoEditor}
           className={`my-1 mx-2 cursor-pointer hover:text-zinc-800 ${
-            props.todoEditor ? "text-zinc-800" : "text-zinc-300"
+            todoEditor ? "text-zinc-800" : "text-zinc-300"
           }`}
         />
       )}

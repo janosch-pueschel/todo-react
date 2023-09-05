@@ -29,7 +29,6 @@ export default function App() {
             text: userInput,
             completed: false,
             id: nanoid(),
-            todoEditor: false,
           },
           ...todos,
         ]);
@@ -81,16 +80,6 @@ export default function App() {
     });
   }, [todos]);
 
-  function openTodoEditor(id) {
-    setTodos((prevTodos) =>
-      prevTodos.map((todo) => {
-        return todo.id === id
-          ? { ...todo, todoEditor: !todo.todoEditor }
-          : todo;
-      })
-    );
-  }
-
   const todoList = todos.map((todo) => {
     return (
       <Todo
@@ -101,8 +90,6 @@ export default function App() {
         markComplete={markComplete}
         deleteTodo={deleteTodo}
         updateTodo={updateTodo}
-        todoEditor={todo.todoEditor}
-        openTodoEditor={openTodoEditor}
       />
     );
   });
