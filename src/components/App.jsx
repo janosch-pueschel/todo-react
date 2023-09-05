@@ -1,6 +1,3 @@
-// Design Inspo:
-// https://miro.medium.com/v2/resize:fit:1400/1*0Tm2ahjpE_zqv3Qx6-M_cQ.png
-
 import React from "react";
 import { nanoid } from "nanoid";
 import Header from "./Header";
@@ -32,6 +29,7 @@ export default function App() {
             text: userInput,
             completed: false,
             id: nanoid(),
+            todoEditor: false,
           },
           ...todos,
         ]);
@@ -83,6 +81,16 @@ export default function App() {
     });
   }, [todos]);
 
+  function openTodoEditor(id) {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) => {
+        return todo.id === id
+          ? { ...todo, todoEditor: !todo.todoEditor }
+          : todo;
+      })
+    );
+  }
+
   const todoList = todos.map((todo) => {
     return (
       <Todo
@@ -93,6 +101,8 @@ export default function App() {
         markComplete={markComplete}
         deleteTodo={deleteTodo}
         updateTodo={updateTodo}
+        todoEditor={todo.todoEditor}
+        openTodoEditor={openTodoEditor}
       />
     );
   });
@@ -115,12 +125,16 @@ export default function App() {
               path={mdiPlus}
               size={1}
               onClick={addTodo}
-              className="rotate-90 cursor-pointer"
+              className="cursor-pointer"
             />
           </div>
         </div>
-        <div className="w-4/6">
-          {todos.length === 0 ? "Nothing to do..." : todoList}
+        <div className="w-4/6 mt-10">
+          {todos.length === 0 ? (
+            <p className="text-center">Nothing to do...</p>
+          ) : (
+            todoList
+          )}
         </div>
       </div>
     </div>
