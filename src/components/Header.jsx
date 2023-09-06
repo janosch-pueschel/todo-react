@@ -27,7 +27,7 @@ export default function Header(props) {
           <p>{todaysDate}</p>
         </div>
         <div className="flex justify-end">
-          <div className="w-14">
+          <div className="w-14 h-14">
             {isNaN(props.completedTodos) ? (
               ""
             ) : (
