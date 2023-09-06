@@ -4,13 +4,12 @@ import Header from "./Header";
 import Todo from "./Todo";
 import Icon from "@mdi/react";
 import { mdiPlus } from "@mdi/js";
-import { CircularProgressbar } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
 
 export default function App() {
   const [todos, setTodos] = React.useState(
-    JSON.parse(localStorage.getItem("todos"))
+    JSON.parse(localStorage.getItem("todos")) || []
   );
+
   const [userInput, setUserInput] = React.useState("");
 
   React.useEffect(() => {
