@@ -9,7 +9,9 @@ export default function Todo(props) {
   const [todoEditor, setTodoEditor] = React.useState(false);
   function openTodoEditor(event) {
     if (event.type === "click" || event.key === "Enter") {
-      setTodoEditor(!todoEditor);
+      !props.text
+        ? alert("Please enter your todo-item!")
+        : setTodoEditor(!todoEditor);
     }
   }
 
