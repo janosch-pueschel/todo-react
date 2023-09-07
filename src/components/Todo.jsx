@@ -5,11 +5,12 @@ import { mdiCheckCircle } from "@mdi/js";
 import { mdiDelete } from "@mdi/js";
 import { mdiPencil } from "@mdi/js";
 
-
 export default function Todo(props) {
   const [todoEditor, setTodoEditor] = React.useState(false);
-  function openTodoEditor() {
-    setTodoEditor(!todoEditor);
+  function openTodoEditor(event) {
+    if (event.type === "click" || event.key === "Enter") {
+      setTodoEditor(!todoEditor);
+    }
   }
 
   return (
@@ -39,6 +40,7 @@ export default function Todo(props) {
           className="border appearance-none focus:outline-none italic border-none rounded bg-zinc-100 py-1 px-2"
           value={props.text}
           onChange={(event) => props.updateTodo(event, props.id)}
+          onKeyDown={(event) => openTodoEditor(event)}
         ></input>
       ) : (
         <p className={`py-1 px-2 ${props.completed && "line-through"}`}>
@@ -52,7 +54,7 @@ export default function Todo(props) {
         <Icon
           path={mdiPencil}
           size={1}
-          onClick={openTodoEditor}
+          onClick={(event) => openTodoEditor(event)}
           className={`my-1 mx-2 cursor-pointer hover:text-zinc-800 ${
             todoEditor ? "text-zinc-800" : "text-zinc-300"
           }`}
